@@ -10,7 +10,6 @@ class MnamaeDotJp < Site
     links = Array.new # 名前のprefixごとのurlを取得
     name_list_doc.css('#whole_body > div:nth-child(6) > div.unit-80.t_panel a').each do |link|
       url = URI.join(main_url,URI.escape(link['href'])).to_s
-      #  puts url
       links << url
     end
     links = links[0...5] if @debug
@@ -44,7 +43,6 @@ class MnamaeDotJp < Site
         end
       end
     end
-    puts "最終的に#{ans.size}個のデータを取得しました"
     return ans
   end
 end

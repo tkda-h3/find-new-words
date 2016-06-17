@@ -17,18 +17,21 @@ for target in *.csv.xz; do
 		fi
 done
 
+echo "cat *.csv | awk -f name.awk"
 cat *.csv | awk -f name.awk > $DICTWORDSFILE
-ruby execute.rb $DICTWORDSFILE $NEWWORDSFILE 1>$STDLOG 2>$ERRLOG
+echo "ruby execute.rb"
+ruby execute.rb $DICTWORDSFILE $NEWWORDSFILE 1>$STDLOG 2>$ERRLOG 
 
-if [ -e $DICTWORDSFILE ]; then
-		LINENUM=`wc -l ${DICTWORDSFILE}`
-		if [${LINENUM} -ge 100000]; then
-				echo "${DICTWORDSFILE}は10万行以上存在します"
+if [ -e $NEWWORDSFILE ]; then
+		LINENUM=`wc -l ${NEWWORDSFILE} | awk '{ print $1 }'`
+		echo $LINENUM
+		if [ ${LINENUM} -ge 100000 ]; then
+				echo "${NEWWORDSFILE}は10万行以上存在します。${LINENUM}行です。"
 		else
-				echo "${DICTWORDSFILE}は10万行に達していません"
+				echo "${NEWWORDSFILE}は10万行に達していません"
 		fi
 else
-		echo "${DICTWORDSFILE}は存在しません"
+		echo "${NEWWORDSFILE}は存在しません"
 fi
 
 # xz -z *.csv

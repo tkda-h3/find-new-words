@@ -35,6 +35,9 @@ class Site
     rescue OpenSSL::SSL::SSLError => e
       STDERR.puts e
       return nil
+    rescue Errno::ECONNRESET => e
+      STDERR.puts e
+      return nil
     end
   end
 
@@ -61,10 +64,7 @@ class Site
   def execute(dict_words_file)
       urls = self.get_target_urls(@main_url)
       pairs = self.get_pairs(urls)
-      st = Time.now
       new_words = self.select_new_words(pairs,dict_words_file)
-      en = Time.now
-      puts "#{en-st}[sec]"
       return new_words
   end
 end
