@@ -24,7 +24,6 @@ ruby execute.rb $DICTWORDSFILE $NEWWORDSFILE 1>$STDLOG 2>$ERRLOG
 
 if [ -e $NEWWORDSFILE ]; then
 		LINENUM=`wc -l ${NEWWORDSFILE} | awk '{ print $1 }'`
-		echo $LINENUM
 		if [ ${LINENUM} -ge 100000 ]; then
 				echo "${NEWWORDSFILE}は10万行以上存在します。${LINENUM}行です。"
 		else
