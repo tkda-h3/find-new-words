@@ -5,5 +5,5 @@
 1. [辞書データ](https://github.com/neologd/mecab-ipadic-neologd/tree/master/seed)を作業ディレクトリに移動
 2. `bash main.sh`を実行
 
-##新語
+##発見した新語
 [new_words_and_how_to_read.txt](https://github.com/tkda-h3/find-new-words/blob/master/new_words_and_how_to_read.txt)に名前と読みのペアがタブ区切りで記録されている。
