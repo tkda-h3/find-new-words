@@ -12,7 +12,7 @@ for file in $STDLOG $ERRLOG $DICTWORDSFILE $NEWWORDSFILE; do
 done
 for target in *.csv.xz; do
 		if [ -e $target ]; then #まだ辞書csvが圧縮されたまま
-				xz -d *.csv.xz
+				xz -d $target
 				echo "${target} was unzipped"
 		fi
 done
