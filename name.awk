@@ -1,5 +1,3 @@
-#cat neologd-*.csv mecab-user-dict-seed.20160613.csv | awk -f name.awk > name.log
-
 BEGIN{
 	FS = ","
 	OFS = ","
