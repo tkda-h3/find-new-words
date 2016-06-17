@@ -18,8 +18,7 @@ class MnamaeDotJp < Site
 
   def get_pairs(urls)
     ans = Array.new
-    Parallel.each(urls, :in_threads => 5) do |link|
-    #urls.each do |link|
+    urls.each do |link|
       doc = self.nokogiri_document(link)
       next if doc.nil?
       insert_index = link.index(/\.html/)
@@ -35,8 +34,7 @@ class MnamaeDotJp < Site
         url = link[0...insert_index] + "_#{i}" + link[insert_index..-1]
         doc = self.nokogiri_document(url)
         next if doc.nil?
-        Parallel.each(doc.css('#listbody tr'),:in_threads => 15) do |tr| 
-          #doc.css('#listbody tr').each do |tr|
+        doc.css('#listbody tr').each do |tr|
           pair = tr.css('td')[0..1].collect{|x| x.inner_text.gsub(/(^(\s|　| )+)|((\s|　| )+$)/, '').strip}.reverse# Array Object [名前,読み方]
           pair[1] = ans[-1][1] if pair[1].empty?
           ans << pair

@@ -2,9 +2,6 @@
 # encoding: utf-8
 require 'open-uri'
 require 'nokogiri'
-require 'addressable/uri'
-require 'csv'
-require 'parallel'
 
 
 class Site
