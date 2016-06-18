@@ -13,8 +13,10 @@ for file in $STDLOG $ERRLOG; do
 		fi
 done
 
-echo "ruby consult_kakusuu.rb ${WORDSFILE} ${METATMPFILE} 1>${STDLOG} 2>${ERRLOG}"
-ruby consult_kakusuu.rb $WORDSFILE $METATMPFILE 1>$STDLOG 2>$ERRLOG
+if ! [ -e $METATMPFILE ]; then
+		echo "ruby consult_kakusuu.rb ${WORDSFILE} ${METATMPFILE} 1>${STDLOG} 2>${ERRLOG}"
+		ruby consult_kakusuu.rb $WORDSFILE $METATMPFILE 1>$STDLOG 2>$ERRLOG
+fi
 echo "wc -l ${METATMPFILE}"
 wc -l $METATMPFILE
 

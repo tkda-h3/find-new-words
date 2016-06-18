@@ -6,7 +6,7 @@ require './nokogiri_document_function.rb'
 
 raise "ARGV.size should be 2" if ARGV.size != 2
 
-pairs = File.open(ARGV[0],'r'){ |f| f.readlines.collect{ |x| x.strip.split("\t")}}
+pairs = File.open(ARGV[0],'r'){ |f| f.readlines.collect{ |x| x.strip.split("\t")}}.uniq{ |x| x[0]}
 
 contents = Hash.new #画数をkey 運勢説明をvalue
 cycle = 80 #総画数の運勢の周期
